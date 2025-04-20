@@ -15,7 +15,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_community.chat_models import ChatOpenAI
 
 # ---- Set Your API Key Here ----
-os.environ["OPENAI_API_KEY"] = "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"
+
 
 DB_FAISS_PATH = "vectorstore/db_faiss"
 
