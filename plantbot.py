@@ -25,7 +25,7 @@ def get_vectorstore():
     return db
 
 def load_llm_openrouter():
-    ChatOpenAI(
+    return ChatOpenAI(
     openai_api_base="https://openrouter.ai/api/v1",
     openai_api_key=st.secrets["openrouter"]["api_key"],
     default_headers={
