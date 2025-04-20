@@ -1,11 +1,11 @@
 import os
+import streamlit as st
 from langchain_community.vectorstores import FAISS
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, HypotheticalDocumentEmbedder, ConversationalRetrievalChain
 from langchain.memory import ConversationBufferWindowMemory
-
 # ✅ Paths
 DB_FAISS_PATH = "vectorstore/db_faiss"
 
@@ -17,13 +17,15 @@ memory = ConversationBufferWindowMemory(
     output_key="answer"
 )
 
-# ✅ LLM setup (Google AI Studio - Gemini)
-# Make sure to install: pip install langchain-google-genai google-generativeai
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    temperature=0.5,
-    max_output_tokens=512,
-    google_api_key="AIzaSyBzltFuAxizZPa6yfgkolS0-5BvlIIOcYI"  # Replace with your actual API key
+# ✅ LLM setup (OpenRouter API with Mistral-7B)
+# Use st.secrets to securely load the API key
+llm = ChatOpenAI(
+    openai_api_base="https://openrouter.ai/api/v1",
+    openai_api_key=st["openrouter"]["api_key"],
+    model="mistralai/mistral-7b-instruct",
+    temperature=0.7,
+    max_tokens=1024,
+    streaming=True,
 )
 
 # ✅ Prompt template for HyDE
