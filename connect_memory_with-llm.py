@@ -21,7 +21,7 @@ memory = ConversationBufferWindowMemory(
 # Use st.secrets to securely load the API key
 llm = ChatOpenAI(
     openai_api_base="https://openrouter.ai/api/v1",
-    openai_api_key=st["openrouter"]["api_key"],
+    openai_api_key=st.secrets["openrouter"]["api_key"],
     model="mistralai/mistral-7b-instruct",
     temperature=0.7,
     max_tokens=1024,
