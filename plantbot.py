@@ -16,7 +16,6 @@ from langchain_community.chat_models import ChatOpenAI
 
 # ---- Set Your API Key Here ----
 
-
 DB_FAISS_PATH = "vectorstore/db_faiss"
 
 @st.cache_resource
@@ -28,7 +27,7 @@ def get_vectorstore():
 def load_llm_openrouter():
     ChatOpenAI(
     openai_api_base="https://openrouter.ai/api/v1",
-    openai_api_key=,
+    openai_api_key=st.secrets["openrouter"]["api_key"],
     default_headers={
         "HTTP-Referer": "http://localhost",  # Replace with your real domain if deployed
         "User-Agent": "LangChain-App"
