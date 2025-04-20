@@ -3,7 +3,7 @@ import os
 import shutil
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_huggingface.embeddings import HuggingFaceEmbeddings  # New
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 
 # Paths
@@ -43,3 +43,4 @@ print("📦 Creating FAISS vector store...")
 db = FAISS.from_documents(text_chunks, embedding_model)
 db.save_local(DB_FAISS_PATH)
 print(f"✅ FAISS vector store built and saved at: {DB_FAISS_PATH}")
+
