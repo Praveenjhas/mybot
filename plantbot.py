@@ -210,6 +210,5 @@ custom_css = """
     }
 </style>
 """
-
 if __name__ == "__main__":
     main()
